@@ -14,3 +14,12 @@ ON Orders.ShipperID = Shippers.ShipperID
 GROUP BY ShipperName
 HAVING ShipperName like "Speedy Express";
 
+What is the last name of the employee with the most orders?
+Peacock
+
+SELECT TOP 1 LastName FROM Orders
+LEFT JOIN Employees
+ON Employees.EmployeeID = Orders.EmployeeID
+GROUP BY Orders.EmployeeID, LastName
+ORDER BY COUNT(Orders.EmployeeID) Desc;
+
