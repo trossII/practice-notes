@@ -23,3 +23,13 @@ ON Employees.EmployeeID = Orders.EmployeeID
 GROUP BY Orders.EmployeeID, LastName
 ORDER BY COUNT(Orders.EmployeeID) Desc;
 
+What product was ordered the most by customers in Germany?
+Steeleye Stout
+
+SELECT TOP 1 P.ProductName
+FROM ( ( ( Orders O INNER JOIN OrderDetails OD ON OD.OrderID = O.OrderID)
+INNER JOIN Customers C ON C.CustomerID = O.CustomerID)
+INNER JOIN Products P ON P.ProductID = OD.ProductID)
+WHERE C.Country like "Germany"
+GROUP BY P.ProductName,OD.Quantity
+
