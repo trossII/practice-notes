@@ -1,0 +1,16 @@
+Question 2: For this question you’ll need to use SQL. Follow this link to access the data set required for the challenge. Please use queries to answer the following questions. Paste your queries along with your final numerical answers below.
+
+How many orders were shipped by Speedy Express in total?
+54
+
+SELECT COUNT(OrderID) AS "Orders from Speedy Express" FROM Orders
+WHERE ShipperID = 1;
+
+Or if you want to look up by the name of the shipper instead of the ShipperID the following query would work:
+
+SELECT COUNT(OrderID) AS "Number of Orders", ShipperName FROM Shippers
+RIGHT JOIN Orders 
+ON Orders.ShipperID = Shippers.ShipperID
+GROUP BY ShipperName
+HAVING ShipperName like "Speedy Express";
+
